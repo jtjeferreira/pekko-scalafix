@@ -1,7 +1,7 @@
 lazy val V = _root_.scalafix.sbt.BuildInfo
 
-lazy val rulesCrossVersions = Seq(V.scala213) //Seq(V.scala213, V.scala212)
-lazy val scala3Version = "3.0.1"
+lazy val rulesCrossVersions = Seq(V.scala213, V.scala212)
+lazy val scala3Version = "3.1.2"
 
 inThisBuild(
   List(
@@ -48,7 +48,7 @@ lazy val input = projectMatrix
     libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.6.20"
   )
   .defaultAxes(VirtualAxis.jvm)
-  .jvmPlatform(scalaVersions = rulesCrossVersions /*:+ scala3Version*/)
+  .jvmPlatform(scalaVersions = rulesCrossVersions :+ scala3Version)
 
 lazy val output = projectMatrix
   .settings(
@@ -58,7 +58,7 @@ lazy val output = projectMatrix
     libraryDependencies += "org.apache.pekko" %% "pekko-actor" % "0.0.0+26623-85c2a469-SNAPSHOT"
   )
   .defaultAxes(VirtualAxis.jvm)
-  .jvmPlatform(scalaVersions = rulesCrossVersions /*:+ scala3Version*/)
+  .jvmPlatform(scalaVersions = rulesCrossVersions :+ scala3Version)
 
 lazy val testsAggregate = Project("tests", file("target/testsAggregate"))
   .aggregate(tests.projectRefs: _*)
@@ -87,20 +87,20 @@ lazy val tests = projectMatrix
   .defaultAxes(
     rulesCrossVersions.map(VirtualAxis.scalaABIVersion) :+ VirtualAxis.jvm: _*
   )
-//  .jvmPlatform(
-//    scalaVersions = Seq(V.scala212),
-//    axisValues = Seq(TargetAxis(scala3Version)),
-//    settings = Seq()
-//  )
+  .jvmPlatform(
+    scalaVersions = Seq(V.scala212),
+    axisValues = Seq(TargetAxis(scala3Version)),
+    settings = Seq()
+  )
   .jvmPlatform(
     scalaVersions = Seq(V.scala213),
     axisValues = Seq(TargetAxis(V.scala213)),
     settings = Seq()
   )
-//  .jvmPlatform(
-//    scalaVersions = Seq(V.scala212),
-//    axisValues = Seq(TargetAxis(V.scala212)),
-//    settings = Seq()
-//  )
+  .jvmPlatform(
+    scalaVersions = Seq(V.scala212),
+    axisValues = Seq(TargetAxis(V.scala212)),
+    settings = Seq()
+  )
   .dependsOn(rules)
   .enablePlugins(ScalafixTestkitPlugin)
