@@ -5,7 +5,7 @@ lazy val scala3Version = "3.1.2"
 
 inThisBuild(
   List(
-    organization := "com.example",
+    organization := "com.github.jtjeferreira",
     homepage := Some(url("https://github.com/com/example")),
     licenses := List(
       "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
@@ -36,7 +36,7 @@ lazy val `pekko-scalafix` = (project in file("."))
 
 lazy val rules = projectMatrix
   .settings(
-    moduleName := "scalafix",
+    moduleName := "pekko-scalafix",
     libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion
   )
   .defaultAxes(VirtualAxis.jvm)
