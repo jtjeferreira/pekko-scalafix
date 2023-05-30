@@ -46,7 +46,8 @@ lazy val input = projectMatrix
   .settings(
     publish / skip := true,
     libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.6.20",
-    libraryDependencies += "com.typesafe.akka" %% "akka-serialization-jackson" % "2.6.20"
+    libraryDependencies += "com.typesafe.akka" %% "akka-serialization-jackson" % "2.6.20",
+    libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.6.20",
   )
   .defaultAxes(VirtualAxis.jvm)
   .jvmPlatform(scalaVersions = rulesCrossVersions :+ scala3Version)
@@ -57,7 +58,8 @@ lazy val output = projectMatrix
     resolvers += "apache-snapshots" at s"https://repository.apache.org/content/repositories/snapshots/",
     resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
     libraryDependencies += "org.apache.pekko" %% "pekko-actor" % "0.0.0+26623-85c2a469-SNAPSHOT",
-    libraryDependencies += "org.apache.pekko" %% "pekko-serialization-jackson" % "0.0.0+26623-85c2a469-SNAPSHOT"
+    libraryDependencies += "org.apache.pekko" %% "pekko-serialization-jackson" % "0.0.0+26623-85c2a469-SNAPSHOT",
+    libraryDependencies += "org.apache.pekko" %% "pekko-slf4j" % "0.0.0+26623-85c2a469-SNAPSHOT",
   )
   .defaultAxes(VirtualAxis.jvm)
   .jvmPlatform(scalaVersions = rulesCrossVersions :+ scala3Version)

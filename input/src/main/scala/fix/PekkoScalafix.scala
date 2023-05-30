@@ -10,6 +10,7 @@ import akka.Done
 import akka.AkkaVersion
 import akka.serialization.jackson.AkkaJacksonModule
 import akka.serialization.jackson._
+import akka.event.slf4j.Slf4jLogger
 
 object PekkoScalafix {
   // Add code that needs fixing here.
@@ -19,6 +20,8 @@ object PekkoScalafix {
   val e: AkkaException = ???
   val v: AkkaVersion.type = ???
   val p: dispatch.ForkJoinExecutorConfigurator.AkkaForkJoinPool = ???
+  val logger: Slf4jLogger = ???
+  val _ = logger.mdcAkkaUidAttributeName
 
   //Classes that need renaming - serialization
   val jm: AkkaJacksonModule = ???

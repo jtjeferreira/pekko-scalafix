@@ -23,8 +23,8 @@ class PekkoScalafix extends SemanticRule("PekkoScalafix") {
         )
       case n:Type.Name if n.value.startsWith("Akka")=>
         Patch.replaceTree(n, n.toString().replaceFirst("Akka", "Pekko"))
-      case n: Type.Singleton if n.ref.toString().startsWith("Akka") =>
-        Patch.replaceTree(n, n.toString().replaceFirst("Akka", "Pekko"))
+      case n:Term.Name if n.value.contains("Akka") =>
+        Patch.replaceTree(n, n.toString().replaceAll("Akka", "Pekko"))
     }.asPatch
   }
 
